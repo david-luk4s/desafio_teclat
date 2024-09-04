@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 300px;
+    text-align: left;
+}
+
+label, input {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+.table-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.table-container table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.edit-btn, .save-btn, .delete-btn{
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    border: none;
+    background: none;
+}
+
+.edit-btn:disabled, .save-btn:disabled {
+    color: grey;
+    cursor: not-allowed;
+}
+
+.delete-btn{
+    cursor: pointer;
+    color: red;
+    text-decoration: underline;
+    border: none;
+    background: none;
+}

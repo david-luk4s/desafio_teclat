@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Gerenciador de Tarefas</h1>
+    <form id="taskForm">
+        <label for="taskName">Título da Tarefa:</label>
+        <input type="text" id="taskName" name="taskName" required>
+
+        <label for="taskDescription">Descrição:</label>
+        <textarea id="taskDescription" name="taskDescription" required rows="3" cols="40"></textarea>
+        <br>
+        <button type="submit">Adicionar Tarefa</button>
+    </form>
+
+    <p id="message">{{ message }}</p>
+
+    <!-- Lista de Tarefas -->
+    <div class="table-container">
+        <h2>Tarefas Adicionadas</h2>
+        <table border="1" cellpadding="10" cellspacing="0" id="taskTable">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Data de Criação</th>
+                    <th>Data de Conclusão</th>
+                </tr>
+            </thead>
+            <tbody id="taskTableBody">
+                {% for tarefa in tarefas %}
+                    <tr data-task-id="{{ tarefa.id }}">
+                        <td>
+                            <input type="text" value="{{ tarefa.titulo }}" disabled>
+                        </td>
+                        <td>
+                            <textarea disabled>{{ tarefa.descricao }}</textarea>
+                        </td>
+                        <td>
+                            <select disabled>
+                                <option value="Pendente" {% if not tarefa.status_conclusao %}selected{% endif %}>Pendente</option>
+                                <option value="Concluída" {% if tarefa.status_conclusao %}selected{% endif %}>Concluída</option>
+                            </select>
+                        </td>
+                        <td>{{ tarefa.data_criacao.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+                        <td>
+                            {% if tarefa.status_conclusao %}
+                                {{ tarefa.data_status_conclusao.strftime('%d/%m/%Y %H:%M:%S') }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button class="edit-btn">Editar</button>
+                            <button class="save-btn" disabled>Salvar</button>
+                            <button class="delete-btn">Deletar</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</html>
